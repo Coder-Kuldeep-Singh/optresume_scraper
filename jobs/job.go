@@ -17,7 +17,7 @@ type Jobs struct {
 	PostedTime  string
 }
 
-func JobsByLocation(URL string, jobTitle, pages string) (string, error) {
+func JobsByTitle(URL string, jobTitle, pages string) (string, error) {
 	URL = URL + jobTitle + "-jobs?page_number=" + pages
 	resp, err := client.Request(URL)
 	if err != nil {

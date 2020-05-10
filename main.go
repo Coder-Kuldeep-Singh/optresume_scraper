@@ -4,13 +4,22 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/optresume/client"
+	"github.com/optresume/jobs"
 )
 
 func main() {
-	resp, err := client.Request("https://google.com/")
+	BaseUrl := "https://www.optresume.com/"
+	output, err := jobs.JobsByTitle(BaseUrl, "golang-developer", "2")
+
 	if err != nil {
-		log.Println("Proxy Failed", err)
+		fmt.Printf("Error to read response {%v}\n", err)
+		return
 	}
-	fmt.Println(resp)
+
+	if output == "" {
+		log.Println("WARNING: output string is blank!!!")
+		return
+	}
+	fmt.Println(output)
+
 }
