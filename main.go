@@ -2,24 +2,29 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"sync"
 
 	"github.com/optresume/jobs"
 )
 
 func main() {
+	var wg sync.WaitGroup
 	BaseUrl := "https://www.optresume.com/"
-	output, err := jobs.JobsByTitle(BaseUrl, "golang-developer", "2")
+	wg.Add(1)
+	go func() {
+		output, err := jobs.JobsByTitle(BaseUrl, "dot2wnet-developer", 1, &wg)
+		if err != nil {
+			fmt.Printf("Error to read response {%v}\n", err)
+			return
+		}
+		for _, list := range output {
+			fmt.Println(list.Description)
+			fmt.Println("************************************************************************************************************************************************")
+			fmt.Println("************************************************************************************************************************************************")
+		}
 
-	if err != nil {
-		fmt.Printf("Error to read response {%v}\n", err)
-		return
-	}
-
-	if output == "" {
-		log.Println("WARNING: output string is blank!!!")
-		return
-	}
-	fmt.Println(output)
+	}()
+	wg.Wait()
+	fmt.Println("Execution Finished")
 
 }
