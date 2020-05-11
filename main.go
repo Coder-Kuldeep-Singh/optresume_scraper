@@ -12,19 +12,19 @@ func main() {
 	BaseUrl := "https://www.optresume.com/"
 	wg.Add(1)
 	go func() {
-		output, err := jobs.JobsByTitle(BaseUrl, "dot2wnet-developer", 1, &wg)
+		output, err := jobs.JobsByTitle(BaseUrl, "dot2wnet-developer", 3, &wg)
 		if err != nil {
 			fmt.Printf("Error to read response {%v}\n", err)
 			return
 		}
 		for _, list := range output {
-			fmt.Println(list.Description)
-			fmt.Println("************************************************************************************************************************************************")
-			fmt.Println("************************************************************************************************************************************************")
+			fmt.Println(list.View)
 		}
 
 	}()
 	wg.Wait()
+	fmt.Println("************************************************************************************************************************************************")
+	fmt.Println("************************************************************************************************************************************************")
 	fmt.Println("Execution Finished")
 
 }
