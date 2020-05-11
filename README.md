@@ -16,6 +16,13 @@ git clone git@github.com:mavensingh/optresume_scraper.git
 mv sample.env.sh env.sh
 ```
 
+```bash
+export DBHOST="DBHOST"
+export DBUSER="DBUSER"
+export DBPASS="DBPASSWORD"
+export DBPORT="DBPORT"
+```
+
 ### Build Software
 
 ```bash
