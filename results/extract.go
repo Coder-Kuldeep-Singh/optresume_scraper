@@ -12,7 +12,7 @@ import (
 type Jobs struct {
 	ResultRank  int
 	Title       string
-	Compnay     string
+	Company     string
 	Location    string
 	Type        string
 	View        string
