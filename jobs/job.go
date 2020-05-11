@@ -108,7 +108,8 @@ func JobsByTitle(URL string, jobTitle string, pages int, wg *sync.WaitGroup) ([]
 		if err != nil {
 			return nil, err
 		}
-		sel := doc.Find("ul.careerfy-row")
+
+		sel := doc.Find("li.careerfy-column-12")
 
 		rank := 1
 		for i := range sel.Nodes {
@@ -117,7 +118,7 @@ func JobsByTitle(URL string, jobTitle string, pages int, wg *sync.WaitGroup) ([]
 			company := item.Find("div.careerfy-list-option > ul > li:nth-child(1) > a")
 			location := item.Find("div.careerfy-list-option > ul > li:nth-child(2)")
 			types := item.Find("div.careerfy-list-option > ul > li:nth-child(3)")
-			view := item.Find("div.careerfy-job-userlist > a.careerfy-option-btn")
+			view := item.Find("div.careerfy-job-userlist > a")
 			description := item.Find("div.card-description")
 			postedtime := item.Find("div.careerfy-job.careerfy-joblisting-classic > ul > li:nth-child(1) > div > div > ul > li")
 
@@ -133,10 +134,7 @@ func JobsByTitle(URL string, jobTitle string, pages int, wg *sync.WaitGroup) ([]
 			TY := types.Text()
 			TY = strings.TrimSpace(TY)
 
-			V, exists := view.Attr("href")
-			if !exists {
-				log.Println("Link not exists")
-			}
+			V, _ := view.Attr("href")
 			V = strings.TrimSpace(V)
 
 			D := description.Text()
@@ -144,18 +142,20 @@ func JobsByTitle(URL string, jobTitle string, pages int, wg *sync.WaitGroup) ([]
 
 			P := postedtime.Text()
 			P = strings.TrimSpace(P)
-			result := Jobs{
-				rank,
-				T,
-				C,
-				L,
-				TY,
-				V,
-				D,
-				P,
+			if V != "" && V != "#" {
+				result := Jobs{
+					rank,
+					T,
+					C,
+					L,
+					TY,
+					V,
+					D,
+					P,
+				}
+				results = append(results, result)
+				rank += 1
 			}
-			results = append(results, result)
-			rank += 1
 		}
 
 	}
