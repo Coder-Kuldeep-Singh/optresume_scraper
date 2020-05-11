@@ -9,7 +9,7 @@ import (
 
 func main() {
 	BaseUrl := "https://www.optresume.com/"
-	output, err := jobs.AllJobs(BaseUrl, 100)
+	output, err := jobs.AllJobs(BaseUrl, 500)
 	if err != nil {
 		fmt.Printf("Error to read response {%v}\n", err)
 		return

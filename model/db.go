@@ -73,7 +73,7 @@ func Optresume(data []re.Jobs) {
 		if err != nil {
 			fmt.Println("Error to Execute insert statement!!! ", err)
 		}
-		fmt.Println(result)
+		fmt.Println(result.LastInsertId())
 		fmt.Println("Statement Executed")
 	}
 
