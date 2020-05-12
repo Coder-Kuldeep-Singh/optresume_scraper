@@ -1,8 +1,6 @@
 package jobs
 
 import (
-	"sync"
-
 	re "github.com/optresume/results"
 )
 
@@ -79,8 +77,7 @@ import (
 // }
 
 // Running Function
-func JobsByTitle(URL string, jobTitle string, pages int, wg *sync.WaitGroup) ([]re.Jobs, error) {
-	defer wg.Done()
+func JobsByTitle(URL string, jobTitle string, pages int) ([]re.Jobs, error) {
 	URL = URL + jobTitle + "-jobs"
 	results, err := re.ExtracterData(URL, pages)
 	if err != nil {
@@ -89,8 +86,7 @@ func JobsByTitle(URL string, jobTitle string, pages int, wg *sync.WaitGroup) ([]
 	return results, nil
 }
 
-func JobsBySkill(URL string, Skill string, pages int, wg *sync.WaitGroup) ([]re.Jobs, error) {
-	defer wg.Done()
+func JobsBySkill(URL string, Skill string, pages int) ([]re.Jobs, error) {
 	URL = URL + Skill + "-jobs"
 	results, err := re.ExtracterData(URL, pages)
 	if err != nil {
@@ -99,8 +95,7 @@ func JobsBySkill(URL string, Skill string, pages int, wg *sync.WaitGroup) ([]re.
 	return results, nil
 }
 
-func JobsByCategories(URL string, Categories string, pages int, wg *sync.WaitGroup) ([]re.Jobs, error) {
-	defer wg.Done()
+func JobsByCategories(URL string, Categories string, pages int) ([]re.Jobs, error) {
 	URL = URL + Categories + "-jobs"
 	results, err := re.ExtracterData(URL, pages)
 	if err != nil {
@@ -109,8 +104,7 @@ func JobsByCategories(URL string, Categories string, pages int, wg *sync.WaitGro
 	return results, nil
 }
 
-func AllJobs(URL string, pages int, wg *sync.WaitGroup) ([]re.Jobs, error) {
-	defer wg.Done()
+func AllJobs(URL string, pages int) ([]re.Jobs, error) {
 	URL = URL + "job-search"
 	results, err := re.ExtracterData(URL, pages)
 	if err != nil {
