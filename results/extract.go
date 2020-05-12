@@ -1,6 +1,7 @@
 package results
 
 import (
+	"fmt"
 	"log"
 	"strconv"
 	"strings"
@@ -68,6 +69,15 @@ func ExtracterData(URL string, pages int) ([]Jobs, error) {
 
 			P := postedtime.Text()
 			P = strings.TrimSpace(P)
+
+			fmt.Printf("Title {%s}\n", T)
+			fmt.Printf("Company {%s}\n", C)
+			fmt.Printf("Location {%s}\n", L)
+			fmt.Printf("Type {%s}\n", TY)
+			fmt.Printf("View {%s}\n", V)
+			fmt.Printf("Description {%s}\n", D)
+			fmt.Printf("PostedTime {%v}\n", P)
+
 			if V != "" && V != "#" {
 				result := Jobs{
 					rank,
