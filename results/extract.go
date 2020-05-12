@@ -47,7 +47,7 @@ func ExtracterData(URL string, pages int) ([]Jobs, error) {
 			types := item.Find("div.careerfy-list-option > ul > li:nth-child(3)")
 			view := item.Find("div.careerfy-job-userlist > a")
 			description := item.Find("div.card-description")
-			postedtime := item.Find("div.careerfy-job.careerfy-joblisting-classic > ul > li:nth-child(1) > div > div > ul > li")
+			postedtime := item.Find("ul.careerfy-column-12 > li")
 
 			T := title.Text()
 			T = strings.TrimSpace(T)
